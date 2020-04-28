@@ -1,0 +1,67 @@
+{
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+    "window.zoomLevel": 0,
+
+	//used by intellisense
+    "C_Cpp.default.includePath": ["\\wsl$\\Ubuntu-18.04\\usr\\lib\\gcc\\x86_64-linux-gnu\\7\\include",
+								  "\\wsl$\\Ubuntu-18.04\\usr\\lib\\gcc\\x86_64-linux-gnu\\7\\include-fixed",
+								  "\\wsl$\\Ubuntu-18.04\\usr\\include\\x86_64-linux-gnu",
+								  "\\wsl$\\Ubuntu-18.04\\usr\\include\\x86_64-linux-gnu\\c++\\7",
+                                  "\\wsl$\\Ubuntu-18.04\\usr\\include"
+                            ],
+	"C_Cpp.default.intelliSenseMode": "gcc-x64",
+	"C_Cpp.default.cppStandard": "c++11",
+	
+	//debug configuration in WSL
+	"launch": {
+	  "version": "0.2.0",
+	  "configurations": [
+		{
+		
+		  "name": "g++ build and debug active file (WSL)",
+		  "type": "cppdbg",
+		  "request": "launch",
+		  "program": "${fileDirname}/${fileBasenameNoExtension}.out",
+		  "args": [],
+		  "stopAtEntry": false,
+		  "cwd": "${workspaceFolder}",
+		  "environment": [],
+		  "externalConsole": false,
+		  "MIMode": "gdb",
+		  "logging": { "engineLogging": true, "trace": true, "traceResponse": true },
+		  "setupCommands": [
+			{
+			  "description": "Enable pretty-printing for gdb",
+			  "text": "-enable-pretty-printing",
+			  "ignoreFailures": true
+			}
+		  ],
+		  //"preLaunchTask": "g++ build active file",
+		  "miDebuggerPath": "/usr/bin/gdb",
+		  "targetArchitecture": "x86_64"
+		},
+		{
+			"name": "g++.exe build and debug active file (MinGW64)",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${fileDirname}/${fileBasenameNoExtension}.out",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"logging": { "engineLogging": true, "trace": true, "traceResponse": true },
+			"miDebuggerPath": "C:\\MinGW64\\bin\\gdb.exe",
+			"setupCommands": [
+			  {
+				"description": "Enable pretty-printing for gdb",
+				"text": "-enable-pretty-printing",
+				"ignoreFailures": true
+			  }
+			],
+			//"preLaunchTask": "g++.exe build active file"
+		  }
+	  ]
+	}
+}
