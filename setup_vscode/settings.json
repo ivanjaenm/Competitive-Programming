@@ -1,5 +1,5 @@
 {
-    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\bash.exe",
     "window.zoomLevel": 0,
 
 	//used by intellisense
@@ -11,6 +11,7 @@
                             ],
 	"C_Cpp.default.intelliSenseMode": "gcc-x64",
 	"C_Cpp.default.cppStandard": "c++11",
+
 	
 	//debug configuration in WSL
 	"launch": {
@@ -18,17 +19,22 @@
 	  "configurations": [
 		{
 		
-		  "name": "g++ build and debug active file (WSL)",
+		  "name": "debug (gdb)",
 		  "type": "cppdbg",
 		  "request": "launch",
-		  "program": "${fileDirname}/${fileBasenameNoExtension}.out",
-		  "args": [],
+		  "program": "${fileDirname}/${fileBasenameNoExtension}",
+		  "args": [
+			"<",
+			"${fileBasenameNoExtension}_input.txt",
+			">",
+			"${fileBasenameNoExtension}_output.txt"
+		  ],
 		  "stopAtEntry": false,
 		  "cwd": "${workspaceFolder}",
 		  "environment": [],
 		  "externalConsole": false,
 		  "MIMode": "gdb",
-		  "logging": { "engineLogging": true, "trace": true, "traceResponse": true },
+		  //"logging": { "engineLogging": true, "trace": true, "traceResponse": true },
 		  "setupCommands": [
 			{
 			  "description": "Enable pretty-printing for gdb",
@@ -36,32 +42,10 @@
 			  "ignoreFailures": true
 			}
 		  ],
-		  //"preLaunchTask": "g++ build active file",
+		  "preLaunchTask": "g++ build on WSL (debug)",
 		  "miDebuggerPath": "/usr/bin/gdb",
 		  "targetArchitecture": "x86_64"
-		},
-		{
-			"name": "g++.exe build and debug active file (MinGW64)",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "${fileDirname}/${fileBasenameNoExtension}.out",
-			"args": [],
-			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}",
-			"environment": [],
-			"externalConsole": false,
-			"MIMode": "gdb",
-			"logging": { "engineLogging": true, "trace": true, "traceResponse": true },
-			"miDebuggerPath": "C:\\MinGW64\\bin\\gdb.exe",
-			"setupCommands": [
-			  {
-				"description": "Enable pretty-printing for gdb",
-				"text": "-enable-pretty-printing",
-				"ignoreFailures": true
-			  }
-			],
-			//"preLaunchTask": "g++.exe build active file"
-		  }
+		}
 	  ]
 	}
 }

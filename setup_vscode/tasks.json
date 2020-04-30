@@ -3,16 +3,16 @@
     "windows": {
       "options": {
         "shell": {
-          "executable": "cmd.exe",
+          "executable": "c:\\Windows\\sysnative\\bash.exe",
           "args": ["-c"]
         }
       }
     },
     "tasks": [      
       {
-        "label": "build on WSL",
+        "label": "g++ build on WSL",
         "type": "shell",
-        "command": "g++",
+        "command": "/usr/bin/g++",
         "args": [
           "-static",
           "-DONLINE_JUDGE",
@@ -22,9 +22,9 @@
           "-std=c++11",
           "-Wall",
           "-g",
-          "${fileBasename}",
+          "${file}",
           "-o",
-          "${fileBasenameNoExtension}.out"
+          "${fileDirname}/${fileBasenameNoExtension}"
         ],
         "group": {
           "kind": "build",
@@ -33,9 +33,9 @@
         "problemMatcher": []
       },
       {
-        "label": "build on WSL (with debug info)",
+        "label": "g++ build on WSL (debug)",
         "type": "shell",
-        "command": "g++",
+        "command": "/usr/bin/g++",
         "args": [
           "-static",
           "-DONLINE_JUDGE",
@@ -44,16 +44,16 @@
           "-std=c++11",
           "-Wall",
           "-g",
-          "${fileBasename}",
+          "${file}",
           "-o",
-          "${fileBasenameNoExtension}.out"
+          "${fileDirname}/${fileBasenameNoExtension}"
         ],
         "group": "build"
       },
       {
         "label": "run on WSL",
         "type": "shell",
-        "command": "./${fileBasenameNoExtension}.out",
+        "command": "'${fileDirname}/${fileBasenameNoExtension}'",
         "args": [
           "<",
           "${fileBasenameNoExtension}_input.txt",
